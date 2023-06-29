@@ -29,11 +29,6 @@ export type CustomerToUpdateType = {
 	phoneNumber: number | null;
 };
 
-export type activityLog = {
-	data: string;
-	history: string[];
-};
-
 export interface CrudStateType {
 	activityLog: activityLog[];
 	customersList: CustomerType[];
@@ -47,4 +42,14 @@ export interface CrudContextType {
 	fillCustomerToUpdate: (id: string) => void;
 	updateCustomer: (customer: CustomerToUpdateType) => void;
 	checkIfCustomerIsNotValid: (customer: CustomerType) => boolean;
+}
+
+export interface ActivityLogType {
+	date: string;
+	history: {
+		operation: string;
+		info: string;
+		customer: string;
+	}[];
+	isOpen: boolean;
 }

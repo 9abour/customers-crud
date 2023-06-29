@@ -1,24 +1,15 @@
 import { BsFillCircleFill } from "react-icons/bs";
-
-interface Props {
-	date: string;
-	history: {
-		operation: string;
-		info: string;
-		customer: string;
-	}[];
-	isOpen: boolean;
-}
+import { ActivityLogType } from "../../types";
 
 const ActivityDayInfo = ({
 	activity,
 	onclick,
 }: {
-	activity: Props;
+	activity: ActivityLogType;
 	onclick: (data: string) => void;
 }) => {
 	return (
-		<div className="pl-6 mt-3">
+		<div className="px-3 mt-3">
 			<button
 				onClick={() => onclick(activity.date)}
 				className="flex items-center gap-2 text-[#f9d3b4] cursor-pointer"
@@ -26,19 +17,27 @@ const ActivityDayInfo = ({
 				<span>
 					<BsFillCircleFill size={15} />
 				</span>
-				<p className="font-medium">{activity.date}</p>
+				<p className="font-medium capitalize">{activity.date}</p>
 			</button>
 			{/* History */}
 			{activity.isOpen && (
-				<div className="relative pl-[7px] text-gray-400">
-					<div className="absolute w-[1px] h-full top-0 bg-gradient-to-t from-[#f9d3b4]"></div>
-					<div className="pl-5">
+				<div className="activity text-gray-400 overflow-y-scroll max-h-[13.3rem]">
+					<div className="relative pl-5">
+						<div className="absolute w-[1px] min-h-full bottom-0 left-[7.5px] bg-gradient-to-t from-[#f9d3b4]" />
 						<div className="text-sm">
-							{activity.history.map(item => (
-								<p key={item.info}>{`${item.info.split(",")[1]} Customer ${
-									item.customer
-								} was ${item.operation}`}</p>
-							))}
+							{activity.history.length > 0 ? (
+								[...activity.history]
+									.reverse()
+									.map(item => (
+										<p key={item.info} className="pb-1">{`${item.info
+											.split(" ")[1]
+											.slice(0, 5)} ${item.info.split(" ")[2]} Customer ${
+											item.customer
+										} was ${item.operation}`}</p>
+									))
+							) : (
+								<p>No activity.</p>
+							)}
 						</div>
 					</div>
 				</div>

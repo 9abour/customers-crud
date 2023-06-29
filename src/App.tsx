@@ -64,6 +64,28 @@ function App() {
 		return customerIsNotValid;
 	};
 
+	const addActivity = (name: string | undefined, operation: string) => {
+		const activityLogFromLS = localStorage.getItem("activityLog");
+
+		const date = new Date();
+		const dateStr = date.toLocaleString();
+
+		const activityLog = {
+			operation: operation,
+			info: dateStr,
+			customer: name,
+		};
+
+		if (activityLogFromLS != null) {
+			localStorage.setItem(
+				"activityLog",
+				JSON.stringify([...JSON.parse(activityLogFromLS), activityLog])
+			);
+		} else {
+			localStorage.setItem("activityLog", JSON.stringify([activityLog]));
+		}
+	};
+
 	const addCustomer = (customer: CustomerType) => {
 		const customersListFromLS = localStorage.getItem("customersList");
 
@@ -76,6 +98,7 @@ function App() {
 					JSON.stringify([...customerListObj, customer])
 				);
 				setCustomersList([...customerListObj, customer]);
+				addActivity(customer.name, "created");
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -86,10 +109,16 @@ function App() {
 		} else {
 			localStorage.setItem("customersList", JSON.stringify([customer]));
 			setCustomersList([customer]);
+			addActivity(customer.name, "created");
 		}
 	};
 
 	const removeCustomer = (id: string) => {
+		addActivity(
+			customersList.find((item: CustomerType) => item.id == id)?.name,
+			"deleted"
+		);
+
 		const updated = customersList.filter(item => item.id != id);
 		localStorage.setItem("customersList", JSON.stringify(updated));
 		setCustomersList(updated);
@@ -135,6 +164,7 @@ function App() {
 			setCustomersList(updated);
 			localStorage.setItem("customersList", JSON.stringify(updated));
 			setCustomerToUpdate(undefined);
+			addActivity(name, "updated");
 		} else {
 			Swal.fire({
 				icon: "error",
@@ -159,7 +189,7 @@ function App() {
 			<main className="relative w-full h-full flex gap-4">
 				{/* Sidebar */}
 				{menuIsOpen && (
-					<div className="relative w-[calc(100vw-2rem)] md:w-[350px] h-screen">
+					<div className="relative w-[calc(100vw-2rem)] md:w-[400px] h-screen">
 						<div className="w-full h-[calc(100%-2rem)] mt-4 ml-4 flex flex-col gap-4">
 							<Activity />
 							<AddCustomer />
