@@ -128,6 +128,7 @@ function App() {
 		const customer = customersList.find(item => item.id == id);
 
 		setCustomerToUpdate(customer);
+		setMenuIsOpen(isSmallScreen && true);
 	};
 
 	const updateCustomer = (newData: CustomerToUpdateType) => {
@@ -165,6 +166,7 @@ function App() {
 			localStorage.setItem("customersList", JSON.stringify(updated));
 			setCustomerToUpdate(undefined);
 			addActivity(name, "updated");
+			setMenuIsOpen(isSmallScreen && false);
 		} else {
 			Swal.fire({
 				icon: "error",

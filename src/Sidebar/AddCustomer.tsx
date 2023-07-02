@@ -4,6 +4,7 @@ import Input from "../UI/Input";
 import { useContext, useEffect, useState } from "react";
 import { CrudContext } from "../App";
 import { v4 as uuid } from "uuid";
+import Swal from "sweetalert2";
 
 const AddCustomer = () => {
 	const [firstName, setFirstName] = useState<string>("");
@@ -36,6 +37,12 @@ const AddCustomer = () => {
 				phoneNumber: phoneNumber,
 			});
 			clearInput();
+		} else {
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Invalid information!",
+			});
 		}
 	};
 

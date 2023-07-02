@@ -1,4 +1,3 @@
-import { BiRefresh } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import Button from "../UI/Button";
@@ -50,7 +49,7 @@ const List = () => {
 						onchange={e => setSearchValue(e)}
 						type="text"
 						label="Search"
-						placeholder="name, date, etc..."
+						placeholder="Name, Date, etc..."
 					/>
 				</div>
 			</div>
