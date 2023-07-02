@@ -29,11 +29,12 @@ const ActivityDayInfo = ({
 								[...activity.history]
 									.reverse()
 									.map(item => (
-										<p key={item.info} className="pb-1">{`${item.info
-											.split(" ")[1]
-											.slice(0, 5)} ${item.info.split(" ")[2]} Customer ${
-											item.customer
-										} was ${item.operation}`}</p>
+										<p
+											key={`${item.customer} ${item.info}`}
+											className="pb-1"
+										>{`${item.info.split(" ")[1].slice(0, 5)} ${
+											item.info.split(" ")[2]
+										} Customer ${item.customer} was ${item.operation}`}</p>
 									))
 							) : (
 								<p>No activity.</p>

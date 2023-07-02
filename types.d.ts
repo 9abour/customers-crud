@@ -19,14 +19,14 @@ export type CustomerType = {
 	dateNow: string;
 	birthday: string;
 	email: string;
-	phoneNumber: number | null;
+	phoneNumber: number | string;
 };
 export type CustomerToUpdateType = {
 	id: string;
 	name: string;
 	birthday: string;
 	email: string;
-	phoneNumber: number | null;
+	phoneNumber: number | string;
 };
 
 export interface CrudStateType {

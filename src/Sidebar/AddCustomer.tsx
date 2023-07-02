@@ -9,14 +9,15 @@ const AddCustomer = () => {
 	const [firstName, setFirstName] = useState<string>("");
 	const [lastName, setLastName] = useState<string>("");
 	const [birthday, setBirthday] = useState<string>("");
-	const [phoneNumber, setPhoneNumber] = useState<number | null>(null);
+	const [phoneNumber, setPhoneNumber] = useState<number | string>("");
 	const [email, setEmail] = useState<string>("");
 
 	const crud = useContext(CrudContext);
 
 	const clearInput = () => {
-		[setFirstName, setLastName, setBirthday, setEmail].map(item => item(""));
-		setPhoneNumber(null);
+		[setFirstName, setLastName, setBirthday, setEmail, setPhoneNumber].map(
+			item => item("")
+		);
 	};
 
 	const handleAddCustomer = () => {
@@ -34,6 +35,7 @@ const AddCustomer = () => {
 				email: email,
 				phoneNumber: phoneNumber,
 			});
+			clearInput();
 		}
 	};
 

@@ -14,7 +14,7 @@ const Input = (props: InputType) => {
 				placeholder={placeholder}
 				autoFocus={autoFocus}
 				className="w-full py-2 px-5 border rounded-md border-[#f9d3b4a3] text-white bg-[#252628] placeholder:text-[#6a6b6e] outline-none focus:border-[#f9d3b4]"
-				defaultValue={value}
+				value={value}
 			/>
 		</div>
 	);

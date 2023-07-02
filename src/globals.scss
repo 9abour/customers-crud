@@ -5,6 +5,20 @@
 @layer base {
 	body {
 		@apply bg-[#19191a];
+		&::-webkit-scrollbar {
+			width: 3px;
+			height: 3px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: #3f4249;
+			border-radius: 5px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: #f9d3b4 !important;
+			border-radius: 10px;
+		}
 	}
 	td,
 	th {
@@ -31,8 +45,8 @@
 	.table-container,
 	.activity {
 		&::-webkit-scrollbar {
-			width: 5px;
-			height: 5px;
+			width: 3px;
+			height: 3px;
 		}
 
 		&::-webkit-scrollbar-track {
@@ -47,8 +61,10 @@
 		.table {
 			tbody {
 				@apply bg-[#19191a];
-				&:nth-child(even) {
-					@apply bg-[#252628];
+				tr {
+					&:nth-child(odd) {
+						@apply bg-[#252628];
+					}
 				}
 				td {
 					span {

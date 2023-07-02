@@ -50,14 +50,14 @@ const List = () => {
 						onchange={e => setSearchValue(e)}
 						type="text"
 						label="Search"
-						placeholder="Name, date, etc..."
+						placeholder="name, date, etc..."
 					/>
 				</div>
 			</div>
 			<div className="overflow-x-auto table-container">
 				<table className="table w-full">
 					<tbody>
-						<tr>
+						<tr className="!bg-[#19191a]">
 							<th className="!min-w-[5rem] !max-w-[5rem] p-4">#</th>
 							<th>Name</th>
 							<th>Added</th>
