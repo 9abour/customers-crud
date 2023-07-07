@@ -2,7 +2,12 @@ import "./globals.scss";
 import { BiMenu } from "react-icons/bi";
 import { createContext, lazy, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { CrudContextType, CustomerToUpdateType, CustomerType } from "../types";
+import {
+	ActivityLogType,
+	CrudContextType,
+	CustomerToUpdateType,
+	CustomerType,
+} from "../types";
 import Swal from "sweetalert2";
 
 const Activity = lazy(() => import("./Sidebar/Activity"));
@@ -14,10 +19,11 @@ export const CrudContext = createContext<CrudContextType | null>(null);
 
 function App() {
 	const [customersList, setCustomersList] = useState<CustomerType[]>([]);
-	const [activityLog, setActivityLog] = useState([]);
 	const [customerToUpdate, setCustomerToUpdate] = useState<
 		CustomerToUpdateType | undefined
 	>(undefined);
+
+	const activityLog: ActivityLogType[] = [];
 
 	const [crudState, setCrudState] = useState({
 		customersList,
