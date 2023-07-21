@@ -9,7 +9,6 @@
 ## Technologies
 - TypeScript
 - React
-- Next.js
 - Redux
 - Tainwind
 - SASS
